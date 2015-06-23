@@ -4,11 +4,15 @@ import org.apache.commons.logging.LogFactory
 import org.zeromq.ZMQ
 
 object Server {
-  val log = LogFactory.getLog( Server.getClass.getName)
+  val log = LogFactory.getLog(Server.getClass.getName)
+
+
+  def main(args: Array[String]): Unit = {
+    new Server().run()
+  }
 }
 
 class Server {
-  
   def run() = {
     val context = ZMQ.context(1)
     val socket = context.socket(ZMQ.REP)
