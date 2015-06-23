@@ -1,11 +1,10 @@
 package argoko
 
-import org.apache.commons.logging.LogFactory
+import org.apache.logging.log4j.LogManager
 import org.zeromq.ZMQ
 
 object Server {
-  val log = LogFactory.getLog(Server.getClass.getName)
-
+  val log = LogManager.getLogger(Server.getClass.getName)
 
   def main(args: Array[String]): Unit = {
     new Server().run()

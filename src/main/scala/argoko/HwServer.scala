@@ -1,15 +1,19 @@
 package argoko
 
-import org.apache.commons.logging.LogFactory
+
+import org.apache.logging.log4j.LogManager
 import org.zeromq.ZMQ;
 
 object HwServer {
-  val log = LogFactory.getLog(HwServer.getClass)
+  val log = LogManager.getLogger(HwServer.getClass)
   def main(args : Array[String]) : Unit = {
+    log.info("Open context")
     val context = ZMQ.context(1);
 
     //  Socket to talk to clients
+    log.info("Create responder")
     val responder = context.socket(ZMQ.REP);
+    log.info("Bind")
     responder.bind("tcp://*:5555");
 
     while (!Thread.currentThread().isInterrupted()) {
